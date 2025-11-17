@@ -1,0 +1,74 @@
+/* Whole page background */
+.home-container {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7e8f7;
+}
+
+/* The centered hero box */
+.home-box {
+  background: linear-gradient(135deg, #fde3f7, #f8d7ef);
+  padding: 60px 40px;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.home-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2a143a;
+  margin-bottom: 18px;
+}
+
+/* Subtitle paragraph */
+.home-subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #2a143a;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+/* Buttons wrapper */
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+/* Primary violet/fuchsia button */
+.primary-btn {
+  background: linear-gradient(45deg, #d6178c, #8a2be2);
+  color: #fff;
+}
+
+/* Outline button */
+.outline-btn {
+  border: 2px solid #d6178c;
+  color: #d6178c;
+  background: transparent;
+}
+
+.primary-btn:hover,
+.outline-btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}

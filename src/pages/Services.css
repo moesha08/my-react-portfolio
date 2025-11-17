@@ -1,0 +1,62 @@
+/* MAIN CONTAINER — page smaller + centered */
+.services-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 20px 20px; /* smaller page */
+  text-align: center;
+}
+
+/* TITLE — bring VERY UP + bigger gap below */
+.services-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #8a2be2;
+  
+  margin-top: 10px;        /* title VERY close to top */
+  margin-bottom: 45px;     /* LARGE space BEFORE services */
+}
+
+/* GRID OF CARDS */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  
+  margin-top: 10px; /* more compact */
+}
+
+/* SERVICE CARD — smaller height */
+.service-card {
+  background: #ffffff;
+  padding: 18px;       /* smaller card */
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  min-height: 150px;   /* MUCH smaller */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ICON ALIGNMENT */
+.service-icon {
+  color: #8a2be2;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+/* TITLE */
+.service-card h3 {
+  font-size: 17px;
+  color: #8a2be2;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* DESCRIPTION — more compact */
+.service-card p {
+  font-size: 14px;
+  color: #2a143a;
+  line-height: 1.35;
+  margin: 0;
+}

@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Moesha Deutou – React Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my personal portfolio website built with React. It showcases my background, technical skills, academic projects, and the services I offer. The website follows modern UI/UX principles with a violet and fuchsia theme, and is fully responsive across desktop and mobile devices.
 
-## Available Scripts
 
-In the project directory, you can run:
+## 🚀 Live Demo
+(Insert your Vercel link here once deployed)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 👩🏽‍💻 About Me
+My name is **Moesha Aurelle Emaleu Deutou**, a Software Engineering student at Centennial College.  
+I am passionate about full-stack development, REST API integration, database systems, and cloud deployment.  
+This portfolio represents my professional identity and highlights the work I've completed throughout my studies.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 📌 Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ✔ Fully Responsive Design  
+The layout adapts seamlessly to different screen sizes, including mobile, tablet, and desktop.
 
-### `npm run build`
+### ✔ Five Structured Pages  
+- Home  
+- About Me  
+- Projects  
+- Services  
+- Contact  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✔ Custom Logo  
+The “MD” logo in the navbar reflects my personal branding.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ✔ Project Showcase with Downloadable Files  
+Each project includes:  
+- a preview image  
+- short description  
+- a button that opens a modal containing downloadable project assets (PDF, DOCX, PPTX, ZIP files)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Assets are stored in `/public/projects`.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ✔ Contact Form  
+Includes all required fields and redirects to the Home page after submission.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠 Tech Stack
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Frontend:**  
+- React  
+- React Router  
+- Framer Motion  
+- CSS3
 
-## Learn More
+**Deployment:**  
+- GitHub  
+- Vercel  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📂 Project Structure
 
-### Code Splitting
+my-react-portfolio/
+│
+├── public/
+│ ├── images/
+│ ├── projects/
+│ └── favicon.ico
+│
+├── src/
+│ ├── components/
+│ ├── pages/
+│ ├── App.js
+│ ├── index.js
+│ └── styles
+│
+└── README.md
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## 🔧 Running the Project Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# Clone the repository
+git clone https://github.com/moesha08/my-react-portfolio.git
 
-### Making a Progressive Web App
+# Navigate to the folder
+cd my-react-portfolio
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Install dependencies
+npm install
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Start the development server
+npm start
