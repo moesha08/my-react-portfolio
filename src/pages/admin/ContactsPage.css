@@ -1,0 +1,43 @@
+/* ============================================================
+   CONTACTS PAGE
+   ============================================================ */
+
+.contacts-container {
+  padding: 30px 40px;
+}
+
+.contacts-list {
+  background: var(--bg-white);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 18px var(--shadow);
+}
+
+.contact-item {
+  border-bottom: 1px solid #e5ccff;
+  padding: 12px 0;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item strong {
+  color: var(--text-dark);
+}
+
+.contact-details {
+  margin-top: 10px;
+  background: #f4e7ff;
+  padding: 15px;
+  border-radius: var(--radius);
+}
+
+/* Right Panel */
+.contact-preview {
+  background: var(--bg-white);
+  padding: 25px;
+  margin-top: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 18px var(--shadow);
+}

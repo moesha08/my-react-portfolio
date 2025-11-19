@@ -1,0 +1,35 @@
+/* ============================================================
+   ADMIN NAV (Top navigation inside admin)
+   ============================================================ */
+
+.admin-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  padding: 15px 35px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(123, 44, 191, 0.25);
+}
+
+.admin-nav .admin-logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.admin-nav .admin-links {
+  display: flex;
+  gap: 25px;
+}
+
+.admin-nav a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.admin-nav a:hover {
+  color: var(--fuchsia);
+  text-shadow: 0 0 6px rgba(255, 43, 194, 0.6);
+}

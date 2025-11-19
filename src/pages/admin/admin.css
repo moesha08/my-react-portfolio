@@ -1,0 +1,197 @@
+/* ======== GLOBAL ADMIN STYLES ======== */
+body {
+  background: #f6edff;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #4a276c;
+}
+
+h1, h2, h3, h4 {
+  color: #6a0dad;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.admin-header {
+  background: linear-gradient(90deg, #6a0dad, #d633ff);
+  padding: 18px 30px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 12px rgba(140, 0, 255, 0.3);
+}
+
+/* ======== GRID LAYOUT ======== */
+.admin-grid {
+  width: 92%;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+}
+
+@media (max-width: 850px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======== CARDS ======== */
+.admin-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(106, 13, 173, 0.15);
+  transition: 0.3s;
+}
+
+.admin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 25px rgba(140, 0, 255, 0.25);
+}
+
+/* ======== TAG BADGE ======== */
+.admin-pill {
+  background: #f0d5ff;
+  padding: 10px 18px;
+  border-radius: 30px;
+  color: #6a0dad;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 14.5px;
+}
+
+/* ======== TABLE ======== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.admin-table th {
+  background: #6a0dad;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.admin-table td {
+  background: #faf4ff;
+  padding: 12px;
+  border-bottom: 1px solid #e5c9ff;
+}
+
+.admin-table tr:hover td {
+  background: #f1dbff;
+}
+
+/* ======== ACTION BUTTONS ======== */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+/* Purple primary */
+.btn-primary {
+  background: #6a0dad;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #8b00ff;
+}
+
+/* Fuchsia delete button */
+.btn-danger {
+  background: #d633ff;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #b300e6;
+}
+
+/* ======== FORM ======== */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-form label {
+  font-weight: 600;
+  color: #6a0dad;
+  font-size: 15px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 2px solid #dcb3ff;
+  font-size: 14px;
+  outline: none;
+  background: #faf4ff;
+  transition: 0.2s;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+  border-color: #6a0dad;
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(140, 0, 255, 0.25);
+}
+
+/* ======== ACTIONS CELL ======== */
+.admin-actions {
+  text-align: center;
+}
+
+/* ======== PAGE TITLES ======== */
+.page-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #5b0099;
+}
+
+/* ======== EMPTY STATE ======== */
+.empty-message {
+  padding: 20px;
+  background: #fde9ff;
+  border-radius: 12px;
+  text-align: center;
+  color: #a100c1;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* ======== FOOTER ======== */
+.admin-footer {
+  margin-top: 50px;
+  padding: 15px;
+  background: #29003f;
+  color: #eabaff;
+  text-align: center;
+  font-size: 14px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
