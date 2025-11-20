@@ -1,7 +1,5 @@
-
-
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -27,6 +25,7 @@ function App() {
 
       <main className="main-content">
         <Routes>
+
           {/* PUBLIC ROUTES */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -34,11 +33,15 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
 
+          {/* ADMIN REDIRECT */}
+          <Route path="/admin" element={<Navigate to="/admin/users" />} />
+
           {/* ADMIN ROUTES */}
           <Route path="/admin/users" element={<UsersPage />} />
           <Route path="/admin/projects" element={<ProjectsPage />} />
           <Route path="/admin/services" element={<ServicesPage />} />
           <Route path="/admin/contacts" element={<ContactsPage />} />
+
         </Routes>
       </main>
 
