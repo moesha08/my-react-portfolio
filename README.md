@@ -2,111 +2,116 @@ Personal Portfolio Website & Admin Dashboard
 
 This project is a full-stack portfolio application built to showcase my work, experience, and services. It includes both a public-facing portfolio and a private admin dashboard that allows me to update content dynamically without touching the codebase.
 
-The frontend is built with React, and the backend is built with Node.js, Express, and MongoDB.
 
 Overview
 
-The main website contains the following sections:
+This project is a personal portfolio web application built using React.
+It includes a public-facing portfolio and a full admin dashboard for managing content such as:
 
-• Home – introduction and professional overview
+   . Users
 
-• About – background, skills, and career focus
+   . Projects
 
-• Projects – a collection of personal and academic projects
+   . Services
 
-• Services – a list of services I can provide
+   . Contact messages
 
-• Contact – a form visitors can use to send me messages
+The system is fully connected to a backend API (Node.js + Express + MongoDB), allowing CRUD operations from the admin pages.
 
-All contact form submissions are stored in the database and appear inside the admin dashboard.
+📌 Features
 
-Admin Dashboard
+🌐 Public Website
 
-The admin panel is designed to give full control over the website’s content.
-It currently supports:
+    . Homepage with introduction and branding
 
-• User Management
+    . About section
 
-   Add, edit, view, and delete users
+    . Display of featured projects
 
-   Useful for managing multiple administrators if needed
+    . Service list
 
-• Project Management
+    . Contact form (submits directly to the backend)
 
-   Create new projects
+🛠️ Admin Dashboard
 
-   Edit project details
+The admin dashboard provides a clean interface to manage all database entities:
 
-   Delete or update existing entries
+Users
 
-• Service Management
+   . Create new users
 
-   Add new services
+   . View all registered users
 
-   Update descriptions
+   . Delete users
 
-   Remove services that are no longer needed
+   . Edit user information through a popup modal
 
-• Contact Messages
+Projects
 
-   View all submitted contact forms
+   . View all existing projects
 
-   Read full message details
+   . Create new projects
 
-   Edit or update contact information
+   . Edit and update project details using a modal
 
-   Reply through email (mailto link)
+   . Delete projects
 
-   Delete single messages or clear all
+Services
 
-The dashboard communicates with the backend through REST APIs using Axios.
+   . Add new services
 
-Technology Stack
+   . Manage service descriptions
+
+   . Edit services in a modal popup
+
+   . Delete services
+
+Contact Messages
+
+   . List of all messages submitted through the public contact form
+
+   . View message details
+
+   . Edit or delete contact entries if needed
+
+📁 Technologies Used
 Frontend
 
-• React
+   . React
 
-• React Router
+   . React Router
 
-• Axios
+   . Axios
 
-• Custom CSS
+   . Custom CSS
 
-• Backend
+Backend
 
-• Node.js
+   . Node.js
 
-• Express
+   . Express
 
-• MongoDB 
-
-•  Environment variables (dotenv)
-
-
+   . MongoDB 
 
 
 ## 📂 Project Structure
 
-my-react-portfolio/
-│
-├── public/
-│ ├── images/
-│ ├── projects/
-│ └── favicon.ico
-│
-├── src/
-│ ├── components/
-│ ├── pages/
-│ ├── App.js
-│ ├── index.js
-│ └── styles
-│
-└── README.md
+src/
+ ├── components/
+ ├── pages/
+ │   ├── admin/
+ │   ├── Home.js
+ │   ├── Contact.js
+ │   ├── About.js
+ │   └── ...
+ ├── api.js
+ ├── App.js
+ └── index.js
 
 
 ## 🔧 Running the Project Locally
 
-```bash
+
 # Clone the repository
 git clone https://github.com/moesha08/my-react-portfolio.git
 
@@ -118,3 +123,11 @@ npm install
 
 # Start the development server
 npm start
+
+
+📡 API Connection
+
+The frontend communicates with the backend via Axios (src/api.js).
+All CRUD operations send and receive data from:
+
+http://localhost:5000/api
