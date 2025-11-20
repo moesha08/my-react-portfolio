@@ -3,9 +3,6 @@ Personal Portfolio Website & Admin Dashboard
 This project is a full-stack portfolio application built to showcase my work, experience, and services. It includes both a public-facing portfolio and a private admin dashboard that allows me to update content dynamically without touching the codebase.
 
 
-Overview
-
-This project is a personal portfolio web application built using React.
 It includes a public-facing portfolio and a full admin dashboard for managing content such as:
 
    . Users
