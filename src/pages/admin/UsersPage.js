@@ -51,8 +51,7 @@ const UsersPage = () => {
   return (
     <DashboardLayout title="User Management">
       <div className="admin-grid">
-
-        {/* LEFT — USER LIST */}
+        {/* LEFT SIDE — LIST */}
         <div className="admin-card">
           <span className="admin-pill">Registered Users</span>
 
@@ -76,10 +75,7 @@ const UsersPage = () => {
                     <td>{u.lastname}</td>
                     <td>{u.email}</td>
                     <td className="admin-actions">
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(u._id)}
-                      >
+                      <button className="btn btn-danger" onClick={() => handleDelete(u._id)}>
                         Delete
                       </button>
                     </td>
@@ -90,7 +86,7 @@ const UsersPage = () => {
           )}
         </div>
 
-        {/* RIGHT — ADD USER */}
+        {/* RIGHT SIDE — ADD USER */}
         <div className="admin-card">
           <h2>Add New User</h2>
 
@@ -118,8 +114,8 @@ const UsersPage = () => {
 
             <label>Password</label>
             <input
-              name="password"
               type="password"
+              name="password"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />

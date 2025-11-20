@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createContact } from "../api";          // ✅ make sure path is correct
+import { createContact } from "../api";
 import "./Contact.css";
 
 const Contact = () => {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     phone: "",
     message: "",
@@ -28,31 +28,24 @@ const Contact = () => {
     setStatus({ loading: true, success: "", error: "" });
 
     try {
-      // Map frontend fields to backend payload
-      await createContact({
-        firstname: form.firstName,
-        lastname: form.lastName,
-        email: form.email,
-        phone: form.phone,
-        message: form.message,
-      });
+      await createContact(form);
 
       setStatus({
         loading: false,
-        success: "Thank you! Your message has been sent.",
+        success: "Thank you! Your message has been sent successfully.",
         error: "",
       });
 
       // Clear form
       setForm({
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         email: "",
         phone: "",
         message: "",
       });
 
-      // Optional: gentle redirect after a short delay
+      // Optional redirect
       setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       console.error("Error sending contact:", err);
@@ -86,23 +79,27 @@ const Contact = () => {
         </p>
       </div>
 
-      {/* status messages */}
-      {status.success && <p className="contact-success">{status.success}</p>}
-      {status.error && <p className="contact-error">{status.error}</p>}
+      {/* STATUS MESSAGES */}
+      {status.success && (
+        <p className="contact-success">{status.success}</p>
+      )}
+      {status.error && (
+        <p className="contact-error">{status.error}</p>
+      )}
 
       <form className="contact-form" onSubmit={handleSubmit}>
         <label>First Name</label>
         <input
-          name="firstName"
-          value={form.firstName}
+          name="firstname"
+          value={form.firstname}
           onChange={handleChange}
           required
         />
 
         <label>Last Name</label>
         <input
-          name="lastName"
-          value={form.lastName}
+          name="lastname"
+          value={form.lastname}
           onChange={handleChange}
           required
         />

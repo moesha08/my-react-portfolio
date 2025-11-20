@@ -32,7 +32,7 @@ export const deleteService = (id) => api.delete(`/services/${id}`);
 // CONTACTS
 // ======================
 export const getContacts = () => api.get("/contacts");
-export const createContact = (data) => api.post("/contacts", data);  // ✅ FIXED & ADDED
+export const createContact = (data) => api.post("/contacts", data);  // Fully correct
 export const updateContact = (id, data) => api.put(`/contacts/${id}`, data);
 export const deleteContact = (id) => api.delete(`/contacts/${id}`);
 

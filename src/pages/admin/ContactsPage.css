@@ -1,43 +1,110 @@
-/* ============================================================
-   CONTACTS PAGE
-   ============================================================ */
-
-.contacts-container {
-  padding: 30px 40px;
+.admin-container {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
-.contacts-list {
-  background: var(--bg-white);
+.card {
+  background: #fff;
   padding: 25px;
-  border-radius: var(--radius);
-  box-shadow: 0 5px 18px var(--shadow);
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  min-width: 500px;
 }
 
-.contact-item {
-  border-bottom: 1px solid #e5ccff;
-  padding: 12px 0;
+.details-card {
+  flex: 0.6;
+  min-width: 450px;
 }
 
-.contact-item:last-child {
-  border-bottom: none;
+.card-header h2 {
+  margin-bottom: 15px;
+  color: rgb(178, 39, 212);
+  text-align: center;
 }
 
-.contact-item strong {
-  color: var(--text-dark);
-}
-
-.contact-details {
+.table {
+  width: 100%;
+  border-collapse: collapse;
   margin-top: 10px;
-  background: #f4e7ff;
-  padding: 15px;
-  border-radius: var(--radius);
 }
 
-/* Right Panel */
-.contact-preview {
-  background: var(--bg-white);
-  padding: 25px;
-  margin-top: 25px;
-  border-radius: var(--radius);
-  box-shadow: 0 5px 18px var(--shadow);
+.table th {
+  background: rgb(142, 33, 192);
+  color: white;
+  padding: 10px;
+}
+
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.action-col {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  background: #f8e8ff;
+  border-radius: 8px;
+  color: #6a0dad;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #d2b8ff;
+  border-radius: 8px;
+  background: #faf4ff;
+  font-size: 15px;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-view {
+  background: #5a00aa;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background: #ff3b8d;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-save {
+  background: rgb(211, 79, 238);
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-email {
+  background: #ff6ae2;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
 }
