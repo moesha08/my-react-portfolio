@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createContact } from "../api";          // ✅ make sure path is correct
 import "./Contact.css";
 
 const Contact = () => {
@@ -11,24 +12,56 @@ const Contact = () => {
     message: "",
   });
 
+  const [status, setStatus] = useState({
+    loading: false,
+    success: "",
+    error: "",
+  });
+
   const navigate = useNavigate();
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Message sent! Redirecting to Home page...");
+    setStatus({ loading: true, success: "", error: "" });
 
-    setForm({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
+    try {
+      // Map frontend fields to backend payload
+      await createContact({
+        firstname: form.firstName,
+        lastname: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+      });
 
-    setTimeout(() => navigate("/"), 500);
+      setStatus({
+        loading: false,
+        success: "Thank you! Your message has been sent.",
+        error: "",
+      });
+
+      // Clear form
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+
+      // Optional: gentle redirect after a short delay
+      setTimeout(() => navigate("/"), 2000);
+    } catch (err) {
+      console.error("Error sending contact:", err);
+      setStatus({
+        loading: false,
+        success: "",
+        error: "Sorry, something went wrong. Please try again.",
+      });
+    }
   };
 
   return (
@@ -52,6 +85,10 @@ const Contact = () => {
           <strong>Location:</strong> Scarborough, Ontario, Canada
         </p>
       </div>
+
+      {/* status messages */}
+      {status.success && <p className="contact-success">{status.success}</p>}
+      {status.error && <p className="contact-error">{status.error}</p>}
 
       <form className="contact-form" onSubmit={handleSubmit}>
         <label>First Name</label>
@@ -94,8 +131,12 @@ const Contact = () => {
           required
         />
 
-        <button type="submit" className="btn primary-btn">
-          Send Message
+        <button
+          type="submit"
+          className="btn primary-btn"
+          disabled={status.loading}
+        >
+          {status.loading ? "Sending..." : "Send Message"}
         </button>
       </form>
     </section>

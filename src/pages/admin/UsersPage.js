@@ -1,6 +1,6 @@
-// src/pages/admin/UsersPage.js
 import React, { useEffect, useState } from "react";
 import { getUsers, createUser, deleteUser } from "../../api";
+import DashboardLayout from "./DashboardLayout";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -8,21 +8,16 @@ const UsersPage = () => {
     firstname: "",
     lastname: "",
     email: "",
+    password: ""
   });
 
-  // Load all users from backend
   const loadUsers = async () => {
     try {
       const res = await getUsers();
-
-      // The API response structure is:
-      // { success: true, count: X, data: [...] }
-      const realUsers = res.data.data || [];
-
-      setUsers(realUsers);
+      setUsers(res.data.data || []);
     } catch (err) {
-      console.error("Error loading users", err);
-      alert("Unable to load users from backend.");
+      console.error(err);
+      alert("Unable to load users.");
     }
   };
 
@@ -30,60 +25,39 @@ const UsersPage = () => {
     loadUsers();
   }, []);
 
-  // Input handler
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Create new user
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.firstname || !form.lastname || !form.email) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
     try {
       await createUser(form);
-
-      setForm({ firstname: "", lastname: "", email: "" });
-
-      loadUsers(); // reload updated list
+      setForm({ firstname: "", lastname: "", email: "", password: "" });
+      loadUsers();
     } catch (err) {
-      console.error("Create user failed", err);
       alert("Unable to create user.");
     }
   };
 
-  // Delete a user
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure?")) return;
+    if (!window.confirm("Delete user?")) return;
 
     try {
       await deleteUser(id);
-
-      setUsers((prev) => prev.filter((u) => u._id !== id));
-    } catch (err) {
-      console.error("Delete user failed:", err);
+      setUsers(users.filter((u) => u._id !== id));
+    } catch {
       alert("Unable to delete user.");
     }
   };
 
   return (
-    <>
-      <div className="admin-header">
-        <h1>User Management</h1>
-      </div>
-
+    <DashboardLayout title="User Management">
       <div className="admin-grid">
-        {/* LEFT – USERS LIST */}
-        <div className="admin-card">
-          <span className="admin-pill">Registered Portal Users</span>
 
-          {(!users || users.length === 0) ? (
-            <p>No users available.</p>
+        {/* LEFT — USER LIST */}
+        <div className="admin-card">
+          <span className="admin-pill">Registered Users</span>
+
+          {users.length === 0 ? (
+            <p className="empty-message">No users found.</p>
           ) : (
             <table className="admin-table">
               <thead>
@@ -116,51 +90,45 @@ const UsersPage = () => {
           )}
         </div>
 
-        {/* RIGHT – ADD USER FORM */}
+        {/* RIGHT — ADD USER */}
         <div className="admin-card">
           <h2>Add New User</h2>
 
           <form className="admin-form" onSubmit={handleSubmit}>
-            <label>
-              Firstname
-              <input
-                type="text"
-                name="firstname"
-                value={form.firstname}
-                onChange={handleChange}
-                placeholder="Enter firstname"
-              />
-            </label>
+            <label>Firstname</label>
+            <input
+              name="firstname"
+              value={form.firstname}
+              onChange={(e) => setForm({ ...form, firstname: e.target.value })}
+            />
 
-            <label>
-              Lastname
-              <input
-                type="text"
-                name="lastname"
-                value={form.lastname}
-                onChange={handleChange}
-                placeholder="Enter lastname"
-              />
-            </label>
+            <label>Lastname</label>
+            <input
+              name="lastname"
+              value={form.lastname}
+              onChange={(e) => setForm({ ...form, lastname: e.target.value })}
+            />
 
-            <label>
-              Email
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Enter email"
-              />
-            </label>
+            <label>Email</label>
+            <input
+              name="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
 
-            <button type="submit" className="btn btn-primary">
-              Add User
-            </button>
+            <label>Password</label>
+            <input
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+
+            <button className="btn btn-primary">Add User</button>
           </form>
         </div>
       </div>
-    </>
+    </DashboardLayout>
   );
 };
 

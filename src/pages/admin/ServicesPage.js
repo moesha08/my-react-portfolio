@@ -1,23 +1,23 @@
-// src/pages/admin/ServicesPage.js
 import React, { useEffect, useState } from "react";
 import { getServices, createService, deleteService } from "../../api";
+import DashboardLayout from "./DashboardLayout";
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
   const [form, setForm] = useState({ title: "", description: "" });
 
-  useEffect(() => {
-    loadServices();
-  }, []);
-
   const loadServices = async () => {
     try {
       const res = await getServices();
-      setServices(res.data.data); // FIXED
+      setServices(res.data.data || []);
     } catch (err) {
-      console.error("Error loading services:", err);
+      console.error(err);
     }
   };
+
+  useEffect(() => {
+    loadServices();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,20 +27,19 @@ const ServicesPage = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this service?")) return;
+    if (!window.confirm("Delete service?")) return;
     await deleteService(id);
     loadServices();
   };
 
   return (
-    <>
-      <h1 className="admin-title">Services Management</h1>
-
-      <div className="admin-section">
-        <h2>Services List</h2>
+    <DashboardLayout title="Service Management">
+      {/* LIST */}
+      <div className="admin-card">
+        <h2>Existing Services</h2>
 
         {services.length === 0 ? (
-          <p>No services yet.</p>
+          <p className="empty-message">No services available.</p>
         ) : (
           <table className="admin-table">
             <thead>
@@ -56,7 +55,10 @@ const ServicesPage = () => {
                   <td>{s.title}</td>
                   <td>{s.description}</td>
                   <td>
-                    <button onClick={() => handleDelete(s._id)} className="btn-danger">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(s._id)}
+                    >
                       Delete
                     </button>
                   </td>
@@ -67,20 +69,27 @@ const ServicesPage = () => {
         )}
       </div>
 
-      <div className="admin-section">
+      {/* ADD SERVICE */}
+      <div className="admin-card">
         <h2>Add New Service</h2>
 
         <form className="admin-form" onSubmit={handleSubmit}>
           <label>Title</label>
-          <input name="title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+          <input
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
 
           <label>Description</label>
-          <textarea name="description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })}></textarea>
+          <textarea
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+          ></textarea>
 
-          <button className="btn-primary">Add Service</button>
+          <button className="btn btn-primary">Add Service</button>
         </form>
       </div>
-    </>
+    </DashboardLayout>
   );
 };
 

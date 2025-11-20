@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  getProjects,
-  createProject,
-  updateProject,
-  deleteProject
-} from "../../api";
+import { getProjects, createProject, deleteProject } from "../../api";
+import DashboardLayout from "./DashboardLayout";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -13,9 +9,9 @@ const ProjectsPage = () => {
   const loadProjects = async () => {
     try {
       const res = await getProjects();
-      setProjects(res.data.data); // FIXED
-    } catch (e) {
-      alert("Could not load projects");
+      setProjects(res.data.data || []);
+    } catch (err) {
+      console.error("Error:", err);
     }
   };
 
@@ -23,57 +19,75 @@ const ProjectsPage = () => {
     loadProjects();
   }, []);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createProject(form);
+    setForm({ title: "", description: "" });
+    loadProjects();
+  };
 
-  const handleAdd = async () => {
-    try {
-      await createProject(form);
-      setForm({ title: "", description: "" });
-      loadProjects();
-    } catch {
-      alert("Failed to add project");
-    }
+  const handleDelete = async (id) => {
+    if (!window.confirm("Delete this project?")) return;
+    await deleteProject(id);
+    loadProjects();
   };
 
   return (
-    <>
-      <h1>Projects Management</h1>
+    <DashboardLayout title="Project Management">
+      {/* LIST */}
+      <div className="admin-card">
+        <h2>Existing Projects</h2>
 
-      <h2>Projects List</h2>
+        {projects.length === 0 ? (
+          <p className="empty-message">No projects found.</p>
+        ) : (
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th></th>
+              </tr>
+            </thead>
 
-      {projects.length === 0 ? (
-        <p>No projects yet.</p>
-      ) : (
-        <ul>
-          {projects.map((p) => (
-            <li key={p._id}>
-              {p.title} — {p.description}
-              <button onClick={() => deleteProject(p._id).then(loadProjects)}>
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+            <tbody>
+              {projects.map((p) => (
+                <tr key={p._id}>
+                  <td>{p.title}</td>
+                  <td>{p.description}</td>
+                  <td>
+                    <button className="btn btn-danger" onClick={() => handleDelete(p._id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
 
-      <h2>Add New Project</h2>
+      {/* CREATE NEW */}
+      <div className="admin-card">
+        <h2>Add New Project</h2>
 
-      <input
-        name="title"
-        placeholder="Title"
-        value={form.title}
-        onChange={handleChange}
-      />
-      <input
-        name="description"
-        placeholder="Description"
-        value={form.description}
-        onChange={handleChange}
-      />
+        <form className="admin-form" onSubmit={handleSubmit}>
+          <label>Title</label>
+          <input
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
 
-      <button onClick={handleAdd}>Add Project</button>
-    </>
+          <label>Description</label>
+          <textarea
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+          ></textarea>
+
+          <button className="btn btn-primary">Add Project</button>
+        </form>
+      </div>
+    </DashboardLayout>
   );
 };
 
