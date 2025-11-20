@@ -6,28 +6,25 @@ This project is a full-stack portfolio application built to showcase my work, ex
 It includes a public-facing portfolio and a full admin dashboard for managing content such as:
 
    . Users
-
    . Projects
-
    . Services
-
    . Contact messages
 
 The system is fully connected to a backend API (Node.js + Express + MongoDB), allowing CRUD operations from the admin pages.
 
 📌 Features
 
+
 🌐 Public Website
 
-    . Homepage with introduction and branding
 
-    . About section
+  . Homepage with introduction and branding
+  . About section
+  . Diplay of featured projects
+  . Service list
+  . Contact form (submits directly to the backend)
 
-    . Display of featured projects
-
-    . Service list
-
-    . Contact form (submits directly to the backend)
+  
 
 🛠️ Admin Dashboard
 
@@ -36,58 +33,42 @@ The admin dashboard provides a clean interface to manage all database entities:
 Users
 
    . Create new users
-
    . View all registered users
-
    . Delete users
-
    . Edit user information through a popup modal
 
 Projects
 
    . View all existing projects
-
    . Create new projects
-
    . Edit and update project details using a modal
-
    . Delete projects
 
 Services
 
    . Add new services
-
    . Manage service descriptions
-
    . Edit services in a modal popup
-
    . Delete services
 
 Contact Messages
 
    . List of all messages submitted through the public contact form
-
    . View message details
-
    . Edit or delete contact entries if needed
 
 📁 Technologies Used
 Frontend
 
    . React
-
    . React Router
-
    . Axios
-
    . Custom CSS
 
 Backend
 
    . Node.js
-
    . Express
-
    . MongoDB 
 
 
