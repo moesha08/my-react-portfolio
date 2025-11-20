@@ -1,57 +1,88 @@
-# Moesha Deutou – React Portfolio Website
+Personal Portfolio Website & Admin Dashboard
 
-This is my personal portfolio website built with React. It showcases my background, technical skills, academic projects, and the services I offer. The website follows modern UI/UX principles with a violet and fuchsia theme, and is fully responsive across desktop and mobile devices.
+This project is a full-stack portfolio application built to showcase my work, experience, and services. It includes both a public-facing portfolio and a private admin dashboard that allows me to update content dynamically without touching the codebase.
+
+The frontend is built with React, and the backend is built with Node.js, Express, and MongoDB.
+
+Overview
+
+The main website contains the following sections:
+
+• Home – introduction and professional overview
+
+• About – background, skills, and career focus
+
+• Projects – a collection of personal and academic projects
+
+• Services – a list of services I can provide
+
+• Contact – a form visitors can use to send me messages
+
+All contact form submissions are stored in the database and appear inside the admin dashboard.
+
+Admin Dashboard
+
+The admin panel is designed to give full control over the website’s content.
+It currently supports:
+
+• User Management
+
+   Add, edit, view, and delete users
+
+   Useful for managing multiple administrators if needed
+
+• Project Management
+
+   Create new projects
+
+   Edit project details
+
+   Delete or update existing entries
+
+• Service Management
+
+   Add new services
+
+   Update descriptions
+
+   Remove services that are no longer needed
+
+• Contact Messages
+
+   View all submitted contact forms
+
+   Read full message details
+
+   Edit or update contact information
+
+   Reply through email (mailto link)
+
+   Delete single messages or clear all
+
+The dashboard communicates with the backend through REST APIs using Axios.
+
+Technology Stack
+Frontend
+
+• React
+
+• React Router
+
+• Axios
+
+• Custom CSS
+
+• Backend
+
+• Node.js
+
+• Express
+
+• MongoDB 
+
+•  Environment variables (dotenv)
 
 
-## 🚀 Live Demo
-(Insert your Vercel link here once deployed)
-
-
-## 👩🏽‍💻 About Me
-My name is **Moesha Aurelle Emaleu Deutou**, a Software Engineering student at Centennial College.  
-I am passionate about full-stack development, REST API integration, database systems, and cloud deployment.  
-This portfolio represents my professional identity and highlights the work I've completed throughout my studies.
-
-
-## 📌 Features
-
-### ✔ Fully Responsive Design  
-The layout adapts seamlessly to different screen sizes, including mobile, tablet, and desktop.
-
-### ✔ Five Structured Pages  
-- Home  
-- About Me  
-- Projects  
-- Services  
-- Contact  
-
-### ✔ Custom Logo  
-The “MD” logo in the navbar reflects my personal branding.
-
-### ✔ Project Showcase with Downloadable Files  
-Each project includes:  
-- a preview image  
-- short description  
-- a button that opens a modal containing downloadable project assets (PDF, DOCX, PPTX, ZIP files)
-
-Assets are stored in `/public/projects`.
-
-
-### ✔ Contact Form  
-Includes all required fields and redirects to the Home page after submission.
-
-
-## 🛠 Tech Stack
-
-**Frontend:**  
-- React  
-- React Router  
-- Framer Motion  
-- CSS3
-
-**Deployment:**  
-- GitHub  
-- Vercel  
 
 
 ## 📂 Project Structure

@@ -1,6 +1,8 @@
+// src/pages/admin/UsersPage.js
 import React, { useEffect, useState } from "react";
-import { getUsers, createUser, deleteUser } from "../../api";
+import { getUsers, createUser, updateUser, deleteUser } from "../../api";
 import DashboardLayout from "./DashboardLayout";
+import "./UsersPage.css";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -8,15 +10,17 @@ const UsersPage = () => {
     firstname: "",
     lastname: "",
     email: "",
-    password: ""
   });
+
+  const [editing, setEditing] = useState(null); // popup modal
+  const [loadingCreate, setLoadingCreate] = useState(false);
 
   const loadUsers = async () => {
     try {
       const res = await getUsers();
       setUsers(res.data.data || []);
     } catch (err) {
-      console.error(err);
+      console.error("Error loading users:", err);
       alert("Unable to load users.");
     }
   };
@@ -25,46 +29,66 @@ const UsersPage = () => {
     loadUsers();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleCreateChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleCreate = async (e) => {
     e.preventDefault();
 
+    if (!form.firstname || !form.lastname || !form.email) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    setLoadingCreate(true);
     try {
       await createUser(form);
-      setForm({ firstname: "", lastname: "", email: "", password: "" });
+      setForm({ firstname: "", lastname: "", email: "" });
       loadUsers();
     } catch (err) {
+      console.error(err);
       alert("Unable to create user.");
+    } finally {
+      setLoadingCreate(false);
     }
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete user?")) return;
+    if (!window.confirm("Delete this user?")) return;
+    await deleteUser(id);
+    loadUsers();
+  };
 
-    try {
-      await deleteUser(id);
-      setUsers(users.filter((u) => u._id !== id));
-    } catch {
-      alert("Unable to delete user.");
-    }
+  const handleEditSave = async () => {
+    await updateUser(editing._id, {
+      firstname: editing.firstname,
+      lastname: editing.lastname,
+      email: editing.email,
+    });
+
+    setEditing(null);
+    loadUsers();
   };
 
   return (
     <DashboardLayout title="User Management">
-      <div className="admin-grid">
-        {/* LEFT SIDE — LIST */}
-        <div className="admin-card">
-          <span className="admin-pill">Registered Users</span>
+      <div className="users-wrapper">
+
+        {/* USERS TABLE */}
+        <div className="users-card">
+          <h2 className="section-title">Registered Users</h2>
 
           {users.length === 0 ? (
             <p className="empty-message">No users found.</p>
           ) : (
-            <table className="admin-table">
+            <table className="users-table">
               <thead>
                 <tr>
                   <th>Firstname</th>
                   <th>Lastname</th>
                   <th>Email</th>
-                  <th style={{ textAlign: "center" }}>Actions</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
 
@@ -74,8 +98,19 @@ const UsersPage = () => {
                     <td>{u.firstname}</td>
                     <td>{u.lastname}</td>
                     <td>{u.email}</td>
-                    <td className="admin-actions">
-                      <button className="btn btn-danger" onClick={() => handleDelete(u._id)}>
+
+                    <td className="table-actions">
+                      <button
+                        className="btn-edit"
+                        onClick={() => setEditing(u)}
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        className="btn-delete"
+                        onClick={() => handleDelete(u._id)}
+                      >
                         Delete
                       </button>
                     </td>
@@ -84,46 +119,85 @@ const UsersPage = () => {
               </tbody>
             </table>
           )}
-        </div>
 
-        {/* RIGHT SIDE — ADD USER */}
-        <div className="admin-card">
-          <h2>Add New User</h2>
+          {/* ADD NEW USER FORM */}
+          <h3 className="form-title">Add New User</h3>
 
-          <form className="admin-form" onSubmit={handleSubmit}>
+          <form className="user-form" onSubmit={handleCreate}>
             <label>Firstname</label>
             <input
               name="firstname"
               value={form.firstname}
-              onChange={(e) => setForm({ ...form, firstname: e.target.value })}
+              onChange={handleCreateChange}
             />
 
             <label>Lastname</label>
             <input
               name="lastname"
               value={form.lastname}
-              onChange={(e) => setForm({ ...form, lastname: e.target.value })}
+              onChange={handleCreateChange}
             />
 
             <label>Email</label>
             <input
               name="email"
+              type="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={handleCreateChange}
             />
 
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-            />
-
-            <button className="btn btn-primary">Add User</button>
+            <button className="btn-submit" disabled={loadingCreate}>
+              {loadingCreate ? "Adding..." : "Add User"}
+            </button>
           </form>
         </div>
       </div>
+
+      {/* EDIT POPUP MODAL */}
+      {editing && (
+        <div className="modal-overlay" onClick={() => setEditing(null)}>
+          <div
+            className="modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>Edit User</h2>
+
+            <label>Firstname</label>
+            <input
+              value={editing.firstname}
+              onChange={(e) =>
+                setEditing({ ...editing, firstname: e.target.value })
+              }
+            />
+
+            <label>Lastname</label>
+            <input
+              value={editing.lastname}
+              onChange={(e) =>
+                setEditing({ ...editing, lastname: e.target.value })
+              }
+            />
+
+            <label>Email</label>
+            <input
+              type="email"
+              value={editing.email}
+              onChange={(e) =>
+                setEditing({ ...editing, email: e.target.value })
+              }
+            />
+
+            <div className="modal-actions">
+              <button className="btn-submit" onClick={handleEditSave}>
+                Save Changes
+              </button>
+              <button className="btn-cancel" onClick={() => setEditing(null)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   );
 };
