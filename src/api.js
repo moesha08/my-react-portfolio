@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const API_BASE = "https://portfolio-backend-edky.onrender.com";
+
 const api = axios.create({
   baseURL: "http://localhost:5000/api",
 });
