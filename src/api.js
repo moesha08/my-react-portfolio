@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const API_BASE = "https://portfolio-backend-edky.onrender.com";
+// Production backend (Render)
+export const API_BASE = "https://portfolio-backend-edky.onrender.com/api";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: API_BASE,
 });
 
 // ======================
@@ -34,7 +35,7 @@ export const deleteService = (id) => api.delete(`/services/${id}`);
 // CONTACTS
 // ======================
 export const getContacts = () => api.get("/contacts");
-export const createContact = (data) => api.post("/contacts", data);  // Fully correct
+export const createContact = (data) => api.post("/contacts", data);
 export const updateContact = (id, data) => api.put(`/contacts/${id}`, data);
 export const deleteContact = (id) => api.delete(`/contacts/${id}`);
 
