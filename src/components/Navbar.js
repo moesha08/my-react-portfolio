@@ -6,6 +6,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  const token = localStorage.getItem("portfolio_token");
+
   const pages = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -16,16 +18,19 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const handleLogout = () => {
+    localStorage.removeItem("portfolio_token");
+    window.location.href = "/signin";
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-inner">
-        {/* Custom Logo */}
         <Link to="/" className="logo">
           <span className="logo-box">MD</span>
           <span className="logo-title">Moesha Deutou</span>
         </Link>
 
-        {/* Desktop Links */}
         <ul className="nav-links">
           {pages.map((page) => (
             <li key={page.path}>
@@ -37,31 +42,50 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+
+          {!token && (
+            <li><Link to="/signin" className="signin-btn">Sign In</Link></li>
+          )}
+
+          {token && (
+            <>
+              <li><Link to="/admin/projects" className="admin-btn">Admin</Link></li>
+              <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
+            </>
+          )}
         </ul>
 
-        {/* Mobile Menu Button */}
         <button
           className="menu-btn"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle navigation menu"
         >
           ☰
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       {isOpen && (
         <div className="mobile-nav">
           {pages.map((page) => (
             <Link
               key={page.path}
               to={page.path}
-              className={isActive(page.path) ? "active" : ""}
               onClick={() => setIsOpen(false)}
+              className={isActive(page.path) ? "active" : ""}
             >
               {page.name}
             </Link>
           ))}
+
+          {!token && (
+            <Link to="/signin" onClick={() => setIsOpen(false)}>Sign In</Link>
+          )}
+
+          {token && (
+            <>
+              <Link to="/admin/projects" onClick={() => setIsOpen(false)}>Admin</Link>
+              <button onClick={handleLogout} className="logout-btn">Logout</button>
+            </>
+          )}
         </div>
       )}
     </nav>

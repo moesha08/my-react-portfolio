@@ -1,35 +1,63 @@
-import { useState } from "react";
-import { login } from "../api";
+import React, { useState } from "react";
+import axios from "axios";
+import "./Signin.css";
 
-export default function SignIn() {
+const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await login(email, password);     // CALL API
 
-      // 🔥 Must use res.data.token, not res.token
+    try {
+      const res = await axios.post(
+        "https://portfolio-backend-edky.onrender.com/api/auth/signin",
+        { email, password }
+      );
+
+      alert("Sign In Successful!");
+
+      // Save token with correct key used by axios interceptor
       localStorage.setItem("portfolio_token", res.data.token);
 
-      alert("Login Successful 🎉");
-      window.location.href = "/admin";  // redirect
-    } catch (err) {
-      alert("Invalid login details");
+      // Redirect to admin dashboard
+      window.location.href = "/admin/projects";
+
+    } catch (error) {
+      console.error(error);
+      alert("Invalid credentials. Please try again.");
     }
   };
 
   return (
-    <div className="auth-container">
-      <h2>Login</h2>
+    <div className="signin-page">
+      <div className="signin-container">
+        <h2 className="signin-title">Sign In</h2>
 
-      <form onSubmit={handleLogin}>
-        <input name="email" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-        <input name="password" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-        
-        <button type="submit">Log In</button>
-      </form>
+        <form onSubmit={handleSubmit} className="signin-form">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button className="signin-btn" type="submit">
+            Sign In
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+};
+
+export default SignIn;

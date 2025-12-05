@@ -1,52 +1,73 @@
-.contact {
-  padding: 50px 20px;
-  max-width: 800px;
-  margin: 0 auto;
+.contact-page {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: auto;
 }
 
-.contact h2 {
-  font-size: 28px;
+.contact-title {
   text-align: center;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #9b00ff;
+  font-weight: 700;
 }
 
-.contact-info {
-  margin-bottom: 24px;
+/* Card with personal info */
+.contact-card {
   background: #ffffff;
-  padding: 18px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  padding: 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  line-height: 1.6;
 }
 
-.contact-info p {
-  margin-bottom: 6px;
-}
-
+/* Contact Form */
 .contact-form {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #333;
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid #c084f5;
-  font-family: inherit;
+  margin-top: 6px;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #d2b3ff;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  transition: border 0.2s ease;
 }
 
-.contact-form textarea {
-  min-height: 100px;
-  resize: vertical;
+/* Focus state */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #9b00ff;
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 100%;     /* fits phone width */
-  max-width: 100%;
+/* Submit button */
+.contact-btn {
+  background: #9b00ff;
+  color: #fff;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #7a00cc;
+  transform: scale(1.02);
 }

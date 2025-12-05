@@ -9,30 +9,31 @@
     />
     <meta name="theme-color" content="#050016" />
 
-    <!-- SEO -->
+    <!-- TITLE & SEO -->
     <title>Moesha Aurelle | Software Engineering & Data Portfolio</title>
     <meta
       name="description"
-      content="Portfolio of Moesha Aurelle Emaleu Deutou – Software Engineering Technician specializing in MERN stack, Java, databases, and data-driven projects."
+      content="Portfolio of Moesha Aurelle Emaleu Deutou – Software Engineering Technician specializing in MERN stack, Java, databases, UI/UX, and data-driven applications."
     />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index, follow" />
 
     <!-- CANONICAL URL -->
     <link rel="canonical" href="https://my-react-portfolio-eight-nu.vercel.app/" />
 
     <!-- FAVICON / ICONS -->
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="logo192.png" />
 
     <!-- MANIFEST -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="manifest.json" />
 
-    <!-- PERFORMANCE: PRELOAD LCP IMAGE -->
+    <!-- ⭐ PERFORMANCE: PRELOAD LCP IMAGE ⭐ -->
+    <!-- NOTE: %PUBLIC_URL% must NOT be used here -->
     <link
       rel="preload"
       as="image"
-      href="%PUBLIC_URL%/images/portfolio.webp"
-      imagesrcset="%PUBLIC_URL%/images/portfolio.webp"
+      href="/images/portfolio.webp"
+      imagesrcset="/images/portfolio.webp"
       imagesizes="100vw"
     />
 
@@ -42,21 +43,49 @@
       property="og:description"
       content="Explore MERN stack projects, logistics systems, hotel management systems, and academic software engineering work."
     />
-    <meta property="og:image" content="%PUBLIC_URL%/images/portfolio.webp" />
+    <meta property="og:image" content="/images/portfolio.webp" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://my-react-portfolio-eight-nu.vercel.app/" />
+    <meta
+      property="og:url"
+      content="https://my-react-portfolio-eight-nu.vercel.app/"
+    />
 
     <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Moesha Aurelle | Software Engineering Portfolio" />
     <meta
       name="twitter:description"
-      content="Software Engineering Technician specializing in MERN stack, Java, and data-driven projects."
+      content="Software Engineering Technician specializing in MERN stack, databases, UI/UX design, DevOps, and data-driven software."
     />
-    <meta name="twitter:image" content="%PUBLIC_URL%/images/portfolio.webp" />
+    <meta name="twitter:image" content="/images/portfolio.webp" />
 
-    <!-- REDUCE RENDER-BLOCKING -->
+    <!-- PERFORMANCE: PRECONNECT FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- LOAD FONTS WITHOUT BLOCKING RENDER -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- FALLBACK FONT -->
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- PREVENT FLASH OF WHITE BACKGROUND -->
+    <style>
+      body {
+        background: #f7e6ff;
+        margin: 0;
+      }
+    </style>
   </head>
 
   <body>

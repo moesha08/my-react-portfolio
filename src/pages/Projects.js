@@ -1,61 +1,77 @@
-import React, { useState, Suspense, lazy } from "react";
+import React, { useState, memo } from "react";
 import "./Projects.css";
 import { motion } from "framer-motion";
 
-// Lazy-load heavy project images
-const LazyImage = ({ src, alt }) => (
-  <img loading="lazy" src={src} alt={alt} className="project-img" />
-);
-
+/* ===========================
+     PROJECT DATA  
+   =========================== */
 const projects = [
   {
     title: "IFLDS – Intelligent Freight Logistics Dispatch System",
     image: "/images/iflds.webp",
+    width: 600,
+    height: 400,
+    alt: "IFLDS Logistics System",
     description:
       "A logistics and dispatch planning system designed to optimize routes, manage shipments, and support decision-making.",
     files: [
       { label: "IFLDS DOCX", url: "/projects/iflds.docx" },
       { label: "IFLDS PPTX", url: "/projects/iflds.pptx" }
-    ]
+    ],
   },
   {
     title: "Personal Portfolio Website",
-    image: "/images/portfolio.webp",  // LCP Hero image
+    image: "/images/portfolio.webp",
+    width: 600,
+    height: 400,
+    alt: "Portfolio Website Preview",
     description:
-      "A modern React portfolio site with a violet/fuchsia aesthetic created for COMP229.",
+      "A modern React portfolio site with violet/fuchsia aesthetic created for COMP229.",
     files: [
       { label: "Backend ZIP", url: "/projects/my-portfolio-backend.zip" }
-    ]
+    ],
   },
   {
     title: "QuickStay – Hotel Management System",
     image: "/images/quickstay.webp",
+    width: 600,
+    height: 400,
+    alt: "QuickStay Hotel Management System",
     description:
       "A hotel management system designed for guest reservations, room management, and administrative workflows.",
     files: [
-      { label: "QuickStay DOCX", url: "/projects/quicstay-hms.docx" }
-    ]
+      { label: "QuickStay DOCX", url: "/projects/quicstay-HMS.docx" }
+    ],
   },
   {
     title: "School LMS – Learning Management System",
-    image: "/images/school lms.webp",
+    image: "/images/school-lms.webp",
+    width: 600,
+    height: 400,
+    alt: "School LMS System",
     description:
-      "A mock LMS system for managing schedules, assignments, user roles, and communication tools.",
-    files: []
+      "A mock LMS for managing schedules, assignments, user roles, and communication tools.",
+    files: [],
   },
   {
     title: "HelpDesk TMS – Ticket Management System",
     image: "/images/TMS.webp",
+    width: 600,
+    height: 400,
+    alt: "HelpDesk Ticket Management System",
     description:
-      "A MERN stack ticket management system including authentication, ticket creation, services, and project management.",
+      "A MERN ticket management system including authentication, ticket creation, services, and project management.",
     files: [
       { label: "Agile Tracking PDF", url: "/projects/tms-agile-tracking.pdf" },
       { label: "Backend ZIP", url: "/projects/tms-backend.zip" },
       { label: "EDD PDF", url: "/projects/tms-edd.pdf" }
-    ]
-  }
+    ],
+  },
 ];
 
+/* ===========================
+     PROJECTS COMPONENT  
+   =========================== */
 const Projects = () => {
   const [selected, setSelected] = useState(null);
 
@@ -68,47 +84,84 @@ const Projects = () => {
           <motion.div
             key={project.title}
             className="project-card"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
           >
-            <LazyImage src={project.image} alt={project.title} />
+            <img
+              src={project.image}
+              alt={project.alt}
+              className="project-img"
+              width={project.width}
+              height={project.height}
+              loading="lazy"
+              decoding="async"
+            />
 
             <h3>{project.title}</h3>
             <p>{project.description}</p>
 
-            <button className="project-btn" onClick={() => setSelected(project)}>
+            <button
+              className="project-btn"
+              aria-label={`View details about ${project.title}`}
+              onClick={() => setSelected(project)}
+            >
               View Project
             </button>
           </motion.div>
         ))}
       </div>
 
+      {/* ===========================
+            MODAL POPUP
+         =========================== */}
       {selected && (
-        <div className="modal-overlay" onClick={() => setSelected(null)}>
+        <div
+          className="modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelected(null)}
+        >
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h2>{selected.title}</h2>
 
-            <img src={selected.image} alt="" className="modal-img" loading="lazy" />
+            <img
+              src={selected.image}
+              alt={selected.alt}
+              className="modal-img"
+              width={selected.width}
+              height={selected.height}
+              loading="lazy"
+              decoding="async"
+            />
 
             <p className="modal-desc">{selected.description}</p>
 
-            <h3 className="download-title">Project Files</h3>
+            <h3 className="download-title">📁 Project Files</h3>
 
-            {selected.files.length > 0 ? (
+            {selected.files?.length > 0 ? (
               <ul className="file-list">
                 {selected.files.map((file) => (
                   <li key={file.url}>
-                    <a href={file.url} download target="_blank" rel="noreferrer">
+                    <a
+                      href={file.url}
+                      download
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       📎 {file.label}
                     </a>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="no-files">No downloadable files for this project.</p>
+              <p className="no-files">No downloadable files.</p>
             )}
 
-            <button className="close-btn" onClick={() => setSelected(null)}>
+            <button
+              className="close-btn"
+              aria-label="Close project details"
+              onClick={() => setSelected(null)}
+            >
               Close
             </button>
           </div>
@@ -118,4 +171,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default memo(Projects);

@@ -7,7 +7,7 @@ import axios from "axios";
 // Local testing:
 export const API_BASE = "http://localhost:5000/api";
 
-// Deployment (Render):
+// Deployment:
 // export const API_BASE = "https://portfolio-backend-edky.onrender.com/api";
 
 const api = axios.create({ baseURL: API_BASE });
@@ -16,12 +16,14 @@ const api = axios.create({ baseURL: API_BASE });
     AUTH
 ============================= */
 export const signup = (data) => api.post("/auth/signup", data);
-export const login = (data) => api.post("/auth/login", data);
+export const signin = (data) => api.post("/auth/signin", data); // ✅ FIXED
 
 /* Attach token to all protected requests */
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("portfolio_token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
